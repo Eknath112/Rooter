@@ -1,0 +1,83 @@
+body {
+  font-family: 'Consolas', 'Courier New', monospace;
+  background: #0d0d0d;
+  color: #00ffcc;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #111;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #00ffcc;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+.methods {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 30px;
+}
+
+.method-card {
+  background: #1a1a1a;
+  border: 1px solid #00ffcc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  text-decoration: none;
+  color: #00ffcc;
+  transition: 0.3s;
+}
+
+.method-card:hover {
+  background: #00ffcc;
+  color: #0d0d0d;
+}
+
+form {
+  max-width: 400px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  background: #111;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background: #00ffcc;
+  border: none;
+  color: #0d0d0d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00e6b8;
+}
+
+.output {
+  background: #111;
+  border: 1px solid #00ffcc;
+  padding: 20px;
+  margin: 20px;
+  white-space: pre-wrap;
+}

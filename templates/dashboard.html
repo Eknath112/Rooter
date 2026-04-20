@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rooter | Tech Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .output, .result-block {
+      text-align: center;
+    }
+    .download-links {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .download-links a {
+      margin: 0 8px;
+      padding: 6px 12px;
+      background: #81c784;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: background 0.3s ease;
+    }
+    .download-links a:hover {
+      background: #388e3c;
+    }
+    img {
+      display: block;
+      margin: 15px auto;
+      max-width: 90%;
+      border: 2px solid #81c784;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(129, 199, 132, 0.4);
+    }
+
+    .action-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }  
+
+    .action-buttons button,
+    .action-buttons a {
+      margin: 0 10px;
+      padding: 12px 20px;
+      background: #66bb6a;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(46, 125, 50, 0.3);
+      transition: background 0.3s ease-in-out, transform 0.2s;
+    }  
+
+    .action-buttons button:hover,
+    .action-buttons a:hover {
+      background: #388e3c;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> Rooter </h1>
+    <p>One dashboard to dominate equations — explore roots with every algorithm in parallel.</p>
+  </header>
+
+  <form method="POST">
+    <!-- Example block: Bisection -->
+    <section class="method-block">
+      <h2>Bisection</h2>
+      <label>Equation:</label>
+      <input type="text" name="equation_Bisection" placeholder="Enter f(x)">
+      <label>a:</label><input type="text" name="a_Bisection">
+      <label>b:</label><input type="text" name="b_Bisection">
+      {% if outputs.get("Bisection") %}
+        <div class="result-block">
+          <pre class="output">{{ outputs["Bisection"].text }}</pre>
+          {% if outputs["Bisection"].plot %}
+            <img src="data:image/png;base64,{{ outputs['Bisection'].plot }}" alt="Bisection Plot">
+            <div class="download-links">
+              <!-- Download graph -->
+              <a href="data:image/png;base64,{{ outputs['Bisection'].plot }}" download="bisection_plot.png">Download Graph</a>
+              <!-- Download text -->
+              <a href="data:text/plain;charset=utf-8,{{ outputs['Bisection'].text | urlencode }}" download="bisection_result.txt">Download Result</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- Repeat same pattern for Regula Falsi, Secant, Newton-Raphson, Iteration -->
+    <!-- Regula Falsi -->
+    <section class="method-block">
+      <h2>Regula Falsi</h2>
+      <label>Equation:</label>
+      <input type="text" name="equation_Regula Falsi" placeholder="Enter f(x)">
+      <label>a:</label><input type="text" name="a_Regula Falsi">
+      <label>b:</label><input type="text" name="b_Regula Falsi">
+      {% if outputs.get("Regula Falsi") %}
+        <div class="result-block">
+          <pre class="output">{{ outputs["Regula Falsi"].text }}</pre>
+          {% if outputs["Regula Falsi"].plot %}
+            <img src="data:image/png;base64,{{ outputs['Regula Falsi'].plot }}" alt="Regula Falsi Plot">
+            <div class="download-links">
+              <a href="data:image/png;base64,{{ outputs['Regula Falsi'].plot }}" download="regula_falsi_plot.png">Download Graph</a>
+              <a href="data:text/plain;charset=utf-8,{{ outputs['Regula Falsi'].text | urlencode }}" download="regula_falsi_result.txt">Download Result</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- Secant -->
+    <section class="method-block">
+      <h2>Secant</h2>
+      <label>Equation:</label>
+      <input type="text" name="equation_Secant" placeholder="Enter f(x)">
+      <label>x0:</label><input type="text" name="x0_Secant">
+      <label>x1:</label><input type="text" name="x1_Secant">
+      {% if outputs.get("Secant") %}
+        <div class="result-block">
+          <pre class="output">{{ outputs["Secant"].text }}</pre>
+          {% if outputs["Secant"].plot %}
+            <img src="data:image/png;base64,{{ outputs['Secant'].plot }}" alt="Secant Plot">
+            <div class="download-links">
+              <a href="data:image/png;base64,{{ outputs['Secant'].plot }}" download="secant_plot.png">Download Graph</a>
+              <a href="data:text/plain;charset=utf-8,{{ outputs['Secant'].text | urlencode }}" download="secant_result.txt">Download Result</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- Newton-Raphson -->
+    <section class="method-block">
+      <h2>Newton-Raphson</h2>
+      <label>Equation:</label>
+      <input type="text" name="equation_Newton-Raphson" placeholder="Enter f(x)">
+      <label>x0:</label><input type="text" name="x0_Newton-Raphson">
+      {% if outputs.get("Newton-Raphson") %}
+        <div class="result-block">
+          <pre class="output">{{ outputs["Newton-Raphson"].text }}</pre>
+          {% if outputs["Newton-Raphson"].plot %}
+            <img src="data:image/png;base64,{{ outputs['Newton-Raphson'].plot }}" alt="Newton-Raphson Plot">
+            <div class="download-links">
+              <a href="data:image/png;base64,{{ outputs['Newton-Raphson'].plot }}" download="newton_raphson_plot.png">Download Graph</a>
+              <a href="data:text/plain;charset=utf-8,{{ outputs['Newton-Raphson'].text | urlencode }}" download="newton_raphson_result.txt">Download Result</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- Iteration -->
+    <section class="method-block">
+      <h2>Iteration (Fixed Point)</h2>
+      <label>g(x):</label>
+      <input type="text" name="equation_Iteration" placeholder="Enter g(x)">
+      <label>x0:</label><input type="text" name="x0_Iteration">
+      {% if outputs.get("Iteration") %}
+        <div class="result-block">
+          <pre class="output">{{ outputs["Iteration"].text }}</pre>
+          {% if outputs["Iteration"].plot %}
+            <img src="data:image/png;base64,{{ outputs['Iteration'].plot }}" alt="Iteration Plot">
+            <div class="download-links">
+              <a href="data:image/png;base64,{{ outputs['Iteration'].plot }}" download="iteration_plot.png">Download Graph</a>
+              <a href="data:text/plain;charset=utf-8,{{ outputs['Iteration'].text | urlencode }}" download="iteration_result.txt">Download Result</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </section>
+    <div class="action-buttons"> <!-- CHANGED: replaced old div with new class -->
+      <button type="submit">Run All</button>
+      {% if outputs %} <!-- NEW: only show if results exist -->
+        <!-- Download all results as one text file -->
+        <a href="data:text/plain;charset=utf-8,{% for k,v in outputs.items() %}{{ k }}:\n{{ v.text | urlencode }}\n\n{% endfor %}" download="all_results.txt">Download All Results</a>
+        <!-- NEW: link to download all text outputs together -->
+      {% endif %}
+    </div>
+   
+  </form>
+</body>
+</html>
